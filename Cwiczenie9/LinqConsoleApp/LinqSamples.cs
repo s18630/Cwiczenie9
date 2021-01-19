@@ -383,7 +383,7 @@ namespace LinqConsoleApp
         {
 
 
-            var res = (from emp in Emps
+           var res  = (from emp in Emps
                        where emp.Job == "Frontend programmer"
                        orderby emp.HireDate descending
                        select emp).FirstOrDefault();
@@ -398,9 +398,34 @@ namespace LinqConsoleApp
         /// </summary>
         public void Przyklad10Button_Click()
         {
+            var res = (from emp in Emps
+                       select new
+                       {
+                           emp.Ename,
+                           emp.Job,
+                           emp.HireDate
+                       }).Union(from e in Emps
+                                where e.Ename == "Brak wartości" && e.Job == null && e.HireDate == null
+                                select new
+                                {
+                                    e.Ename,
+                                    e.Job,
+                                    e.HireDate
+                                });
+
+
+            foreach (var a in res)
+            {
+                Console.WriteLine(a.Ename);
+                Console.WriteLine(a.Job);
+                Console.WriteLine(a.HireDate);
+
+            }
 
 
 
+
+            //      ResultsDataGridView.DataSource = res.ToList();
 
 
         }
@@ -433,6 +458,83 @@ namespace LinqConsoleApp
         //typu CROSS JOIN
         public void Przyklad12()
         {
+         /*   var crossJoinLambda = customers.SelectMany(t1 => cars.Select(t2 => new {
+                CustomerName = t1.Name,
+                PhoneNumber = t1.PhoneNumber,
+                CarName = t2.ModelName,
+            }));
+      
+*/
+            var res = Depts.SelectMany(t1 => Emps.Select(t2 => new {
+                t1.Dname,
+                t2.Ename
+            }));
+            //Immediate query execution  
+
+            foreach (var a in res)
+            {
+
+                Console.WriteLine();
+                Console.WriteLine(a.Dname);
+
+                Console.WriteLine(a.Ename);
+            }
+
+
+        }
+
+
+
+
+        public void Przyklad10()
+        {
+            Console.WriteLine("Przyklad10");
+
+            var res = (from emp in Emps
+                        select new
+                        {
+                            emp.Ename,
+                            emp.Job,
+                            emp.HireDate
+                        }).Union(from e in Emps
+                                 where e.Ename == "Brak wartości" && e.Job == null && e.HireDate == null
+                                 select new
+                                 {
+                                     e.Ename,
+                                     e.Job,
+                                     e.HireDate
+                                 });
+            
+
+
+            foreach (var a in res)
+            {
+                Console.WriteLine(a.Ename);
+                Console.WriteLine(a.Job);
+                Console.WriteLine(a.HireDate);
+
+                Console.WriteLine("Przyklad10");
+
+            }
+            res = (from emp in Emps
+                   select new
+                   {
+                       emp.Ename,
+                       emp.Job,
+                       emp.HireDate
+                   }).ToList();
+            foreach (var a in res)
+               
+            { Console.WriteLine();
+                Console.WriteLine(a.Ename);
+                Console.WriteLine(a.Job);
+                Console.WriteLine(a.HireDate);
+
+                Console.WriteLine("Przyklad10");
+
+            }
+
+
 
         }
     }

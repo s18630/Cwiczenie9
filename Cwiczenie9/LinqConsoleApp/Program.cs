@@ -39,7 +39,24 @@ namespace LinqConsoleApp
             Console.WriteLine();
             Console.WriteLine();
             d.Przyklad11();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            d.Przyklad12();
 
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            d.Przyklad10();
+
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            d.Przyklad12();
 
 
 
