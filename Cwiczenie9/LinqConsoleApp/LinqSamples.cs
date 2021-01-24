@@ -8,6 +8,7 @@ namespace LinqConsoleApp
     {
         public static IEnumerable<Emp> Emps { get; set; }
         public static IEnumerable<Dept> Depts { get; set; }
+        public object ResultsDataGridView { get; private set; }
 
         public LinqSamples()
         {
@@ -396,7 +397,7 @@ namespace LinqConsoleApp
         /// UNION
         /// SELECT "Brak wartości", null, null;
         /// </summary>
-        public void Przyklad10Button_Click()
+        public void Przyklad10Button_Click() //zwykła metoda poniżej 
         {
             var res = (from emp in Emps
                        select new
@@ -425,7 +426,7 @@ namespace LinqConsoleApp
 
 
 
-            //      ResultsDataGridView.DataSource = res.ToList();
+               //  ResultsDataGridView.DataSource = res.ToList();
 
 
         }
@@ -458,13 +459,7 @@ namespace LinqConsoleApp
         //typu CROSS JOIN
         public void Przyklad12()
         {
-         /*   var crossJoinLambda = customers.SelectMany(t1 => cars.Select(t2 => new {
-                CustomerName = t1.Name,
-                PhoneNumber = t1.PhoneNumber,
-                CarName = t2.ModelName,
-            }));
-      
-*/
+         
             var res = Depts.SelectMany(t1 => Emps.Select(t2 => new {
                 t1.Dname,
                 t2.Ename
